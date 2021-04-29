@@ -88,7 +88,26 @@ def getTopLists():
         this_album = result["album"]["name"]
         list_of_albums.append(this_album)
         song_popularity = result["popularity"]
-        list_of_popularity.append(song_popularity)  
+        list_of_popularity.append(song_popularity)
+
+    s_tier_songs = []
+    a_tier_songs = []
+    b_tier_songs = []
+    c_tier_songs = []
+    d_tier_songs = []
+    f_tier_songs = []
+    for i in range(0,8):
+        s_tier_songs.append(list_of_song_names[i])
+    for i in range(8, 16):
+        a_tier_songs.append(list_of_song_names[i])
+    for i in range(16,24):
+        b_tier_songs.append(list_of_song_names[i])
+    for i in range(24, 34):
+        c_tier_songs.append(list_of_song_names[i])
+    for i in range(34,42):
+        d_tier_songs.append(list_of_song_names[i])
+    for i in range(42, 50):
+        f_tier_songs.append(list_of_song_names[i])
     
     return (", ".join(list_of_song_names))
 

@@ -115,7 +115,7 @@ def getTopLists():
 
 
     #return (", ".join(list_of_song_names))
-    return render_template('top2.html', 
+    return render_template('top50.html', 
     sTier = s_tier, 
     aTier = a_tier,
     bTier = b_tier,

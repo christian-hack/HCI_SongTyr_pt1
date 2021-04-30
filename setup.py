@@ -7,6 +7,7 @@ requires = [
     'os',
     'json',
     'time',
+    'Jinja2'
 ]
 
 setup(

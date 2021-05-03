@@ -17,6 +17,10 @@
           width: 100%;
           text-align: center;
         }
+        .songTyrWelcomeMsg{
+          width: 100%;
+          text-align: center;
+        }
         .nav1 {
           position: absolute;
           left: 0;
@@ -70,6 +74,7 @@
           font-size: 30px;
           font-weight: 900; /* or 700 or 400 */
         }
+        
         .tierTable {
           width: 50%;
           margin: 50px auto 10px;
@@ -93,23 +98,34 @@
         tr:nth-child(even) > td {
           background-color: #989898 !important;
         }
+        .hidden {
+          display: none;
+        }
+        .footer h2 {
+          text-align: center;
+        }
       </style>
+      </head>
+        <body>
+      
       <div class="songTyrWelcome">
         <h1>SongTyr</h1>
       </div>
-    </head>
-    <body>
+      <div class="songTyrWelcomeMsg">
+        <h2>Welcome to SongTyr! Feel free to browse the page and explore your very own, personalized, tier-rankings based on the music you listen to on Spotify. Thank you for using our application!</h2>
+      </div>
+  
       <nav class="nav1">
-        <container class="navBtnHolder"><button>S-Tier</button></container>
-        <container class="navBtnHolder"><button>A-Tier</button></container>
-        <container class="navBtnHolder"><button>B-Tier</button></container>
+        <container class="navBtnHolder"><button id="navBtnS">S-Tier</button></container>
+        <container class="navBtnHolder"><button id="navBtnA">A-Tier</button></container>
+        <container class="navBtnHolder"><button id="navBtnB">B-Tier</button></container>
       </nav>
       <nav class="nav2">
-        <container class="navBtnHolder"><button>C-Tier</button></container>
-        <container class="navBtnHolder"><button>D-Tier</button></container>
-        <container class="navBtnHolder"><button>F-Tier</button></container>
+        <container class="navBtnHolder"><button id="navBtnC">C-Tier</button></container>
+        <container class="navBtnHolder"><button id="navBtnD">D-Tier</button></container>
+        <container class="navBtnHolder"><button id="navBtnF">F-Tier</button></container>
       </nav>
-      <div class="tierTable">
+      <div class="tierTable hidden" data-letter="S">
         <h2>S-Tier</h2>
         <table>
           <tr>
@@ -125,9 +141,9 @@
           {% endfor %}
         </table>
       </div>
-      <div class="tierTable">
+      <div class="tierTable hidden" data-letter="A">
         <h2>A-Tier</h2>
-        <table>
+        <table >
           <tr>
             <th>Song</th>
             <th>Artist</th>
@@ -141,7 +157,7 @@
           {% endfor %}
         </table>
       </div>
-      <div class="tierTable">
+      <div class="tierTable hidden" data-letter="B">
         <h2>B-Tier</h2>
         <table>
           <tr>
@@ -157,7 +173,7 @@
           {% endfor %}
         </table>
       </div>
-      <div class="tierTable">
+      <div class="tierTable hidden" data-letter="C">
         <h2>C-Tier</h2>
         <table>
           <tr>
@@ -172,6 +188,8 @@
             </tr>
           {% endfor %}
         </table>
+      </div>
+      <div class="tierTable hidden" data-letter="D">
         <h2>D-Tier</h2>
         <table>
           <tr>
@@ -187,7 +205,7 @@
           {% endfor %}
         </table>
       </div>
-      <div class="tierTable">
+      <div class="tierTable hidden" data-letter="F">
         <h2>F-Tier</h2>
         <table>
           <tr>
@@ -203,6 +221,98 @@
           {% endfor %}
         </table>
       </div>
+
+      <div class="footer">
+        <h2>SongTyr</h2>
+      </div>
+      <script>
+
+      // grab each inidividual table
+
+      var sTierBtn = document.getElementById("navBtnS");
+
+      var aTierBtn = document.getElementById("navBtnA");
+
+      var bTierBtn = document.getElementById("navBtnB");
+
+      var cTierBtn = document.getElementById("navBtnC");
+
+      var dTierBtn = document.getElementById("navBtnD");
+
+      var fTierBtn = document.getElementById("navBtnF");
+
+      // all tables in 1 selector
+
+      var allTables = document.getElementsByClassName("tierTable");
+
+      // create list of btns to add eventListener once
+
+      var allBtns = [sTierBtn, aTierBtn, bTierBtn, cTierBtn, dTierBtn, fTierBtn];
+
+
+      function hideAllTables() {
+
+      // iterate over the HTML Collection of Nodes
+
+      for (table of allTables) {
+
+      // Don't follow the link
+
+      event.preventDefault();
+
+      // remove ALL "hidden" strings that might be in the class list
+
+      table.classList.remove("hidden");
+
+      // add 1 hidden to all tables; this makes sure we don't
+
+      // accidentally have 'hidden' in the class list more than once
+
+      table.classList.add("hidden");
+
+      }
+
+      }
+
+      allBtns.forEach(function (btn) {
+
+      btn.addEventListener(
+
+      "click",
+
+      function (event) {
+
+      // Don't do any unexpected things with the event
+
+      event.preventDefault();
+
+      // make sure all tables are still hidden
+
+      hideAllTables();
+
+      var letterAttribute = btn.getAttribute("id");
+
+      var tableLetter = letterAttribute.slice(-1);
+
+      console.log('[data-letter="' + tableLetter + '"]');
+
+      var table = document.querySelector('[data-letter="' +
+      tableLetter + '"]');
+
+      // only unhide the 1 table we clicked
+
+      table.classList.remove("hidden");
+
+      },
+
+      false,
+
+      );
+
+      });
+
+      </script>
+
     </body>
   </html>
 </doctype>

@@ -8,6 +8,7 @@ Instructions to build SongTyr application:
             $ sudo apt-get install python3.9
         ii) If using another Linux distribution, Python3 should be pre-installed. If not, enter the following command:
             $ sudo dnf install python3
+        iii) Be sure Python 3 is added to PATH
 
     OR
 
